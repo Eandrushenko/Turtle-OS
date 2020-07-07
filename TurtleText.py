@@ -12,10 +12,13 @@ t.speed(0)
 t.penup()
 t.goto(-295,280)
 
+buffer = []
+
 
 def chara():
    t.write('a')
    t.forward(6)
+   buffer.append('a')
    
 def charb():
    t.write('b')
@@ -232,8 +235,19 @@ def charENTER():
         t.clear()
         t.goto(-295,280)
 
+
+#Continue work here
+def charBACKSPACE():
+  t.backward(6)
+  t.pencolor("white")
+  t.write('a')
+  t.pencolor("black")
+  
+   
+
 def getpos():
     print(t.position())
+    print(buffer)
 
 def putstring(inputstring):
    chartable = {
@@ -263,6 +277,32 @@ def putstring(inputstring):
       'x' : charx,
       'y' : chary,
       'z' : charz,
+      'A' : charA,
+      'B' : charB,
+      'C' : charC,
+      'D' : charD,
+      'E' : charE,
+      'F' : charF,
+      'G' : charG,
+      'H' : charH,
+      'I' : charI,
+      'J' : charJ,
+      'K' : charK,
+      'L' : charL,
+      'M' : charM,
+      'N' : charN,
+      'O' : charO,
+      'P' : charP,
+      'Q' : charQ,
+      'R' : charR,
+      'S' : charS,
+      'T' : charT,
+      'U' : charU,
+      'V' : charV,
+      'W' : charW,
+      'X' : charX,
+      'Y' : charY,
+      'Z' : charZ,
       ' ' : charSPACE
       }
    for letters in inputstring:
@@ -325,10 +365,11 @@ def putchar():
     wn.onkey(charZ, "Z")
     wn.onkey(charSPACE, "space")
     wn.onkey(charENTER, "Return")
+    wn.onkey(charBACKSPACE, "BackSpace")
     wn.onkey(getpos, ".")
 
 putchar()
-pizza = 'testing the putstring function and its working like a charm'
+pizza = 'abcdefghijklmnopqrstuvwxyz and ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 putstring(pizza)
 
 wn.listen()
