@@ -5,12 +5,13 @@ import turtle
 turtle.setup(600,600)                
 wn = turtle.Screen()                 
 wn.title("Turtle OS")     
-wn.bgcolor("White")             
+wn.bgcolor("Black")             
 t = turtle.Turtle()
 t.hideturtle()
 t.speed(0)
 t.penup()
 t.goto(-295,280)
+t.pencolor("White")
 
 buffer = []
 
@@ -23,210 +24,262 @@ def chara():
 def charb():
    t.write('b')
    t.forward(6)
+   buffer.append('b')
 
 def charc():
    t.write('c')
    t.forward(6)
+   buffer.append('c')
 
 def chard():
    t.write('d')
    t.forward(6)
+   buffer.append('d')
 
 def chare():
    t.write('e')
    t.forward(6)
+   buffer.append('e')
    
 def charf():
    t.write('f')
    t.forward(4)
+   buffer.append('f')
 
 def charg():
    t.write('g')
    t.forward(6)
+   buffer.append('g')
 
 def charh():
    t.write('h')
    t.forward(6)
+   buffer.append('h')
 
 def chari():
    t.write('i')
    t.forward(3)
+   buffer.append('i')
 
 def charj():
    t.write('j')
    t.forward(3)
+   buffer.append('j')
 
 def chark():
    t.write('k')
    t.forward(5)
+   buffer.append('k')
 
 def charl():
    t.write('l')
    t.forward(3)
+   buffer.append('l')
 
 def charm():
    t.write('m')
    t.forward(9)
+   buffer.append('m')
 
 def charn():
    t.write('n')
    t.forward(6)
+   buffer.append('n')
    
 def charo():
    t.write('o')
    t.forward(6)
+   buffer.append('o')
 
 def charp():
    t.write('p')
    t.forward(6)
+   buffer.append('p')
 
 def charq():
    t.write('q')
    t.forward(6)
+   buffer.append('q')
 
 def charr():
    t.write('r')
    t.forward(4)
+   buffer.append('r')
 
 def chars():
    t.write('s')
    t.forward(6)
+   buffer.append('s')
 
 def chart():
    t.write('t')
    t.forward(4)
+   buffer.append('t')
 
 def charu():
    t.write('u')
    t.forward(5)
+   buffer.append('u')
 
 def charv():
    t.write('v')
    t.forward(5.5)
+   buffer.append('v')
 
 def charw():
    t.write('w')
    t.forward(8.5)
+   buffer.append('w')
 
 def charx():
    t.write('x')
    t.forward(7)
+   buffer.append('x')
 
 def chary():
    t.write('y')
    t.forward(6)
+   buffer.append('y')
 
 def charz():
    t.write('z')
    t.forward(6)
+   buffer.append('z')
    
 def charA():
    t.write('A')
    t.forward(8)
+   buffer.append('A')
    
 def charB():
    t.write('B')
    t.forward(7)
+   buffer.append('B')
 
 def charC():
    t.write('C')
    t.forward(7)
+   buffer.append('C')
 
 def charD():
    t.write('D')
    t.forward(7)
+   buffer.append('D')
 
 def charE():
    t.write('E')
    t.forward(6)
+   buffer.append('E')
 
 def charF():
    t.write('F')
    t.forward(6)
-
+   buffer.append('F')
+   
 def charG():
    t.write('G')
    t.forward(8)
+   buffer.append('G')
 
 def charH():
    t.write('H')
    t.forward(7)
-
+   buffer.append('H')
+   
 def charI():
    t.write('I')
    t.forward(3)
+   buffer.append('I')
 
 def charJ():
    t.write('J')
    t.forward(5)
+   buffer.append('J')
 
 def charK():
    t.write('K')
    t.forward(7)
+   buffer.append('K')
 
 def charL():
    t.write('L')
    t.forward(6)
+   buffer.append('L')
 
 def charM():
    t.write('M')
    t.forward(8)
+   buffer.append('M')
 
 def charN():
    t.write('N')
    t.forward(7)
+   buffer.append('N')
 
 def charO():
    t.write('O')
    t.forward(8)
+   buffer.append('O')
 
 def charP():
    t.write('P')
    t.forward(6)
+   buffer.append('P')
 
 def charQ():
    t.write('Q')
    t.forward(8)
+   buffer.append('Q')
 
 def charR():
    t.write('R')
    t.forward(7)
+   buffer.append('R')
 
 def charS():
    t.write('S')
    t.forward(7)
+   buffer.append('S')
 
 def charT():
    t.write('T')
    t.forward(6)
-
+   buffer.append('T')
+   
 def charU():
    t.write('U')
    t.forward(7)
+   buffer.append('U')
 
 def charV():
    t.write('V')
    t.forward(9)
+   buffer.append('V')
 
 def charW():
    t.write('W')
    t.forward(11)
+   buffer.append('W')
 
 def charX():
    t.write('X')
    t.forward(8)
+   buffer.append('X')
 
 def charY():
    t.write('Y')
    t.forward(8)
+   buffer.append('Y')
 
 def charZ():
    t.write('Z')
    t.forward(7)
+   buffer.append('Z')
 
 def charSPACE():
     t.write(' ')
     t.forward(4)
+    buffer.append(' ')
 
 def charENTER():
     Ycoordinate = t.ycor()
@@ -238,10 +291,47 @@ def charENTER():
 
 #Continue work here
 def charBACKSPACE():
-  t.backward(6)
-  t.pencolor("white")
-  t.write('a')
-  t.pencolor("black")
+   if buffer:
+      print(buffer)
+      threes = ['i', 'j', 'l', 'I']
+      fours = ['f', 'r', 't', ' ']
+      fives = ['k', 'u', 'J']
+      sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T']
+      sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z']
+      eights = ['A', 'G', 'M', 'O', 'Q', 'X', 'Y']
+      nines = ['m', 'V']
+      fivehalf = 'v'
+      eighthalf = 'w'
+      eleven = 'W'
+      
+      delchar = buffer.pop()
+      backvalue = 0
+      
+      if delchar in threes:
+         backvalue = 3
+      elif delchar in fours:
+         backvalue = 4
+      elif delchar in fives:
+         backvalue = 5
+      elif delchar in sixes:
+         backvalue = 6
+      elif delchar in sevens:
+         backvalue = 7
+      elif delchar in eights:
+         backvalue = 8
+      elif delchar in nines:
+         backvalue = 9
+      elif delchar == fivehalf:
+         backvalue = 5.5
+      elif delchar == eighthalf:
+         backvalue = 8.5
+      elif delchar == eleven:
+         backvalue = 11
+      
+      t.backward(backvalue)
+      t.pencolor("black")
+      t.write(delchar)
+      t.pencolor("White")
   
    
 
