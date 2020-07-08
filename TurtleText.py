@@ -2,16 +2,20 @@ import turtle
 
 
 #-284.00
+textcolor = "White"
+bgcolor = "Black"
+
 turtle.setup(600,600)                
 wn = turtle.Screen()                 
-wn.title("Turtle OS")     
-wn.bgcolor("Black")             
+wn.title("Turtle OS")
+
+wn.bgcolor(bgcolor)             
 t = turtle.Turtle()
 t.hideturtle()
 t.speed(0)
 t.penup()
 t.goto(-295,280)
-t.pencolor("White")
+t.pencolor(textcolor)
 
 buffer = []
 
@@ -118,7 +122,7 @@ def chart():
 
 def charu():
    t.write('u')
-   t.forward(5)
+   t.forward(5.5)
    buffer.append('u')
 
 def charv():
@@ -281,6 +285,91 @@ def charSPACE():
     t.forward(4)
     buffer.append(' ')
 
+def charPERIOD():
+    t.write('.')
+    t.forward(2)
+    buffer.append('.')
+    
+def char1():
+    t.write('1')
+    t.forward(5)
+    buffer.append('1')
+
+def char2():
+    t.write('2')
+    t.forward(6)
+    buffer.append('2')
+
+def char3():
+    t.write('3')
+    t.forward(6)
+    buffer.append('3')
+
+def char4():
+    t.write('4')
+    t.forward(6)
+    buffer.append('4')
+
+def char5():
+    t.write('5')
+    t.forward(6)
+    buffer.append('5')
+
+def char6():
+    t.write('6')
+    t.forward(6)
+    buffer.append('6')
+
+def char7():
+    t.write('7')
+    t.forward(6)
+    buffer.append('7')
+
+def char8():
+    t.write('8')
+    t.forward(6)
+    buffer.append('8')
+
+def char9():
+    t.write('9')
+    t.forward(6)
+    buffer.append('9')
+
+def char0():
+    t.write('0')
+    t.forward(6)
+    buffer.append('0')
+
+def charCOMMA():
+    t.write(',')
+    t.forward(2)
+    buffer.append(',')
+
+def charQUESTION():
+    t.write('?')
+    t.forward(7)
+    buffer.append('?')
+
+def charEXCLAMATION():
+    t.write('!')
+    t.forward(4)
+    buffer.append('!')
+
+def charQUOTATION():
+    t.write('"')
+    t.forward(5)
+    buffer.append('"')
+
+def charLTS():
+    t.write('<')
+    t.forward(6)
+    buffer.append('<')
+
+def charGTS():
+    t.write('>')
+    t.forward(6)
+    buffer.append('>')
+
 def charENTER():
     Ycoordinate = t.ycor()
     t.goto(-295, Ycoordinate - 12)
@@ -292,22 +381,23 @@ def charENTER():
 #Continue work here
 def charBACKSPACE():
    if buffer:
-      print(buffer)
+      twos = ['.', ',']
       threes = ['i', 'j', 'l', 'I']
-      fours = ['f', 'r', 't', ' ']
-      fives = ['k', 'u', 'J']
-      sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T']
-      sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z']
+      fours = ['f', 'r', 't', ' ', '!']
+      fives = ['k', 'J', '1', '\"']
+      sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T', '2', '3', '4', '5', '6', '7', '8', '9', '0', '<', '>']
+      sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z', '?']
       eights = ['A', 'G', 'M', 'O', 'Q', 'X', 'Y']
       nines = ['m', 'V']
-      fivehalf = 'v'
+      fivehalves = ['v', 'u']
       eighthalf = 'w'
       eleven = 'W'
       
       delchar = buffer.pop()
       backvalue = 0
-      
-      if delchar in threes:
+      if delchar in twos:
+         backvalue = 2
+      elif delchar in threes:
          backvalue = 3
       elif delchar in fours:
          backvalue = 4
@@ -321,7 +411,7 @@ def charBACKSPACE():
          backvalue = 8
       elif delchar in nines:
          backvalue = 9
-      elif delchar == fivehalf:
+      elif delchar in fivehalves:
          backvalue = 5.5
       elif delchar == eighthalf:
          backvalue = 8.5
@@ -329,9 +419,9 @@ def charBACKSPACE():
          backvalue = 11
       
       t.backward(backvalue)
-      t.pencolor("black")
+      t.pencolor(bgcolor)
       t.write(delchar)
-      t.pencolor("White")
+      t.pencolor(textcolor)
   
    
 
@@ -393,7 +483,24 @@ def putstring(inputstring):
       'X' : charX,
       'Y' : charY,
       'Z' : charZ,
-      ' ' : charSPACE
+      ' ' : charSPACE,
+      '.' : charPERIOD,
+      '1' : char1,
+      '2' : char2,
+      '3' : char3,
+      '4' : char4,
+      '5' : char5,
+      '6' : char6,
+      '7' : char7,
+      '8' : char8,
+      '9' : char9,
+      '0' : char0,
+      ',' : charCOMMA,
+      '?' : charQUESTION,
+      '!' : charEXCLAMATION,
+      '/"' : charQUOTATION,
+      '<' : charLTS,
+      '>' : charGTS,
       }
    for letters in inputstring:
       if letters in chartable:
@@ -456,10 +563,27 @@ def putchar():
     wn.onkey(charSPACE, "space")
     wn.onkey(charENTER, "Return")
     wn.onkey(charBACKSPACE, "BackSpace")
-    wn.onkey(getpos, ".")
+    wn.onkey(charPERIOD, ".")
+    wn.onkey(char1, "1")
+    wn.onkey(char2, "2")
+    wn.onkey(char3, "3")
+    wn.onkey(char4, "4")
+    wn.onkey(char5, "5")
+    wn.onkey(char6, "6")
+    wn.onkey(char7, "7")
+    wn.onkey(char8, "8")
+    wn.onkey(char9, "9")
+    wn.onkey(char0, "0")
+    wn.onkey(charCOMMA, ",")
+    wn.onkey(charQUESTION, "?")
+    wn.onkey(charEXCLAMATION, "!")
+    wn.onkey(charQUOTATION, "\"")
+    wn.onkey(charLTS, "<")
+    wn.onkey(charGTS, ">")
+    
 
 putchar()
-pizza = 'abcdefghijklmnopqrstuvwxyz and ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+pizza = ''
 putstring(pizza)
 
 wn.listen()
