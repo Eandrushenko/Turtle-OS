@@ -370,6 +370,136 @@ def charGTS():
     t.forward(6)
     buffer.append('>')
 
+def charFORWARDSLASH():
+    t.write('/')
+    t.forward(4)
+    buffer.append('/')
+
+def charBACKSLASH():
+    t.write('\\')
+    t.forward(4)
+    buffer.append('\\')
+
+def charBRACKET1():
+    t.write('[')
+    t.forward(4)
+    buffer.append('[')
+
+def charBRACKET2():
+    t.write(']')
+    t.forward(4)
+    buffer.append(']')
+
+def charCURLY1():
+    t.write('{')
+    t.forward(4)
+    buffer.append('{')
+
+def charCURLY2():
+    t.write('}')
+    t.forward(4)
+    buffer.append('}')
+
+def charPARA1():
+    t.write('(')
+    t.forward(4)
+    buffer.append('(')
+
+def charPARA2():
+    t.write(')')
+    t.forward(4)
+    buffer.append(')')
+
+def charAT():
+    t.write('@')
+    t.forward(11)
+    buffer.append('@')
+
+def charPOUND():
+    t.write('#')
+    t.forward(6)
+    buffer.append('#')
+
+def charDS():
+    t.write('$')
+    t.forward(5.5)
+    buffer.append('$')
+
+def charPERCENT():
+    t.write('%')
+    t.forward(10)
+    buffer.append('%')
+
+def charCARET():
+    t.write('^')
+    t.forward(5)
+    buffer.append('^')
+
+def charAMPERSAND():
+    t.write('&')
+    t.forward(7)
+    buffer.append('&')
+
+def charASTERISK():
+    t.write('*')
+    t.forward(5)
+    buffer.append('*')
+
+def charAPOSTROPHE():
+    t.write('\'')
+    t.forward(3)
+    buffer.append('\'')
+
+def charGRAVE():
+    t.write('`')
+    t.forward(3)
+    buffer.append('`')
+
+def charTILDE():
+    t.write('~')
+    t.forward(5.5)
+    buffer.append('~')
+
+def charPIPE():
+    t.write('|')
+    t.forward(3)
+    buffer.append('|')
+
+def charCOLON():
+    t.write(':')
+    t.forward(3)
+    buffer.append(':')
+
+def charSEMICOLON():
+    t.write(';')
+    t.forward(3)
+    buffer.append(';')
+
+def charUNDERSCORE():
+    t.write('_')
+    t.forward(7)
+    buffer.append('_')
+
+def charHYPHEN():
+    t.write('-')
+    t.forward(5)
+    buffer.append('-')
+
+def charPLUS():
+    t.write('+')
+    t.forward(5.5)
+    buffer.append('+')
+
+def charEQUAL():
+    t.write('=')
+    t.forward(6)
+    buffer.append('=')
+
+def charTAB():
+    t.write('    ')
+    t.forward(16)
+    buffer.append('    ')
+
 def charENTER():
     Ycoordinate = t.ycor()
     t.goto(-295, Ycoordinate - 12)
@@ -377,21 +507,21 @@ def charENTER():
         t.clear()
         t.goto(-295,280)
 
-
-#Continue work here
 def charBACKSPACE():
    if buffer:
       twos = ['.', ',']
-      threes = ['i', 'j', 'l', 'I']
-      fours = ['f', 'r', 't', ' ', '!']
-      fives = ['k', 'J', '1', '\"']
-      sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T', '2', '3', '4', '5', '6', '7', '8', '9', '0', '<', '>']
-      sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z', '?']
+      threes = ['i', 'j', 'l', 'I', '\'', '`', '|', ':', ';']
+      fours = ['f', 'r', 't', ' ', '!', '/', '\\', '[', ']', '{', '}', '(', ')']
+      fives = ['k', 'J', '1', '\"', '^', '*', '-']
+      sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T', '2', '3', '4', '5', '6', '7', '8', '9', '0', '<', '>', '#', '=']
+      sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z', '?', '&', '_']
       eights = ['A', 'G', 'M', 'O', 'Q', 'X', 'Y']
       nines = ['m', 'V']
-      fivehalves = ['v', 'u']
+      fivehalves = ['v', 'u', '$', '~', '+']
       eighthalf = 'w'
-      eleven = 'W'
+      ten = '%'
+      elevens = ['W', '@']
+      sixteen = '    '
       
       delchar = buffer.pop()
       backvalue = 0
@@ -415,8 +545,12 @@ def charBACKSPACE():
          backvalue = 5.5
       elif delchar == eighthalf:
          backvalue = 8.5
-      elif delchar == eleven:
+      elif delchar == ten:
+         backvalue = 10
+      elif delchar in elevens:
          backvalue = 11
+      elif delchar == sixteen:
+         backvalue = 16
       
       t.backward(backvalue)
       t.pencolor(bgcolor)
@@ -501,6 +635,31 @@ def putstring(inputstring):
       '/"' : charQUOTATION,
       '<' : charLTS,
       '>' : charGTS,
+      '/' : charFORWARDSLASH,
+      '\\' : charBACKSLASH,
+      '[' : charBRACKET1,
+      ']' : charBRACKET2,
+      '{' : charCURLY1,
+      '}' : charCURLY2,
+      '(' : charPARA1,
+      ')' : charPARA2,
+      '@' : charAT,
+      '#' : charPOUND,
+      '$' : charDS,
+      '^' : charCARET,
+      '&' : charAMPERSAND,
+      '*' : charASTERISK,
+      '\'' : charAPOSTROPHE,
+      '`' : charGRAVE,
+      '~' : charTILDE,
+      '|' : charPIPE,
+      ':' : charCOLON,
+      ';' : charSEMICOLON,
+      '_' : charUNDERSCORE,
+      '-' : charHYPHEN,
+      '+' : charPLUS,
+      '=' : charEQUAL,
+      '    ' : charTAB,
       }
    for letters in inputstring:
       if letters in chartable:
@@ -580,7 +739,32 @@ def putchar():
     wn.onkey(charQUOTATION, "\"")
     wn.onkey(charLTS, "<")
     wn.onkey(charGTS, ">")
-    
+    wn.onkey(charFORWARDSLASH, "/")
+    wn.onkey(charBACKSLASH, "\\")
+    wn.onkey(charBRACKET1, "[")
+    wn.onkey(charBRACKET2, "]")
+    wn.onkey(charCURLY1, "{")
+    wn.onkey(charCURLY2, "}")
+    wn.onkey(charPARA1, "(")
+    wn.onkey(charPARA2, ")")
+    wn.onkey(charAT, "@")
+    wn.onkey(charPOUND, "#")
+    wn.onkey(charDS, "$")
+    wn.onkey(charPERCENT, "%")
+    wn.onkey(charCARET, "^")
+    wn.onkey(charAMPERSAND, "&")
+    wn.onkey(charASTERISK, "*")
+    wn.onkey(charAPOSTROPHE, "\'")
+    wn.onkey(charGRAVE, "`")
+    wn.onkey(charTILDE, "~")
+    wn.onkey(charPIPE, "|")
+    wn.onkey(charCOLON, ":")
+    wn.onkey(charSEMICOLON, ";")
+    wn.onkey(charUNDERSCORE, "_")
+    wn.onkey(charHYPHEN, "minus")
+    wn.onkey(charPLUS, "+")
+    wn.onkey(charEQUAL, "=")
+    wn.onkey(charTAB, "Tab")
 
 putchar()
 pizza = ''
