@@ -766,19 +766,25 @@ def putchar():
     wn.onkey(ENTER, "Return")
 
 #TURTLE OS FUNCTIONS
-def TurtleIntro():
-   t.pencolor("Yellow")
-   putstring("Welcome to Turtle OS, enter \"menu\" to see all commands implemented")
+def colormessage(text, color):
+   t.pencolor(color)
+   putstring(text)
    t.pencolor(textcolor)
+
+def TurtleIntro():
+   os.chdir(os.getcwd() + "\\root")
+   colormessage("Welcome to Turtle OS, enter \"menu\" to see all commands implemented", "Yellow")
    NEWLINE()
-   putstring("\\$ ")
+   colormessage(pwd(), "Blue")
+   putstring(" $ ")
    buffer.clear()
 
 def ENTER():
    command = ReadBuffer()
    ProcessCommand(command)
    NEWLINE()
-   putstring("\\$ ")
+   colormessage(pwd(), "Blue")
+   putstring(" $ ")
    buffer.clear()
 
 def ReadBuffer():
@@ -800,10 +806,14 @@ def ProcessCommand(c):
       clear()
    elif initialCommand == "touch":
       touch(commandstring)
+   elif initialCommand == "pwd":
+      putstring(pwd())
+   elif initialCommand == "mkdir":
+      mkdir(commandstring)
+   elif initialCommand == "cd":
+      cd(commandstring)
    else:
-      t.pencolor("Red")
-      putstring("Invalid Command: " + "\"" + c + "\"")
-      t.pencolor(textcolor)
+      colormessage("Invalid Command: " + "\"" + c + "\"", "Red")
 
 def menu():
    putstring("ls")
@@ -811,9 +821,15 @@ def menu():
    putstring("clear")
    NEWLINE()
    putstring("touch")
+   NEWLINE()
+   putstring("pwd")
+   NEWLINE()
+   putstring("mkdir")
+   NEWLINE()
+   putstring("cd")
 
 def ls():
-   path = "root"
+   path = os.getcwd()
    dir_list = os.listdir(path)  
    for items in dir_list:
       putstring(items)
@@ -825,9 +841,34 @@ def clear():
    
 def touch(c):
    for items in c:
-      f = open("root/"+(items), "w")
+      f = open(""+(items), "w")
       f.close()
 
+def pwd():
+   path = os.getcwd()
+   newpath = path.split('\\')
+   dirs = ""
+   displaypath = []
+   result = ""
+   while(newpath[-1] != "TurtleOS"):
+      displaypath.append(newpath.pop())
+   while(displaypath):
+      result = result + "\\" + displaypath.pop()
+   return result
+
+def mkdir(c):
+   for items in c:
+      os.mkdir(items)
+      
+def cd(c):
+   if c:
+      path = c[0]
+      try:
+         os.chdir(path)
+      except OSError as error:
+         colormessage("ERROR: Invalid path", "Red")
+   else:
+         colormessage("ERROR: Missing arguments after \"cd\"", "Red")
    
 TurtleIntro()
 putchar()
