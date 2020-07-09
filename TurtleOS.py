@@ -7,7 +7,8 @@ import os
 textcolor = "White"
 bgcolor = "Black"
 
-turtle.setup(600,600)                
+turtle.setup(600,600)
+
 wn = turtle.Screen()                 
 wn.title("Turtle OS")
 
@@ -789,17 +790,43 @@ def ReadBuffer():
 
 def ProcessCommand(c):
    NEWLINE()
-   if c == "menu":
+   commandstring = c.split()
+   initialCommand = commandstring.pop(0)
+   if initialCommand == "menu":
       menu()
+   elif initialCommand == "ls":
+      ls()
+   elif initialCommand == "clear":
+      clear()
+   elif initialCommand == "touch":
+      touch(commandstring)
    else:
       t.pencolor("Red")
       putstring("Invalid Command: " + "\"" + c + "\"")
       t.pencolor(textcolor)
 
 def menu():
-   putstring("No commands have been implemented yet.")
+   putstring("ls")
+   NEWLINE()
+   putstring("clear")
+   NEWLINE()
+   putstring("touch")
+
+def ls():
+   path = "root"
+   dir_list = os.listdir(path)  
+   for items in dir_list:
+      putstring(items)
+      NEWLINE()
+      
+def clear():
+   t.clear()
+   t.goto(-295,292)
    
-   
+def touch(c):
+   for items in c:
+      f = open("root/"+(items), "w")
+      f.close()
 
    
 TurtleIntro()
