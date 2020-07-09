@@ -1,7 +1,9 @@
 import turtle
-
+import os
 
 #-284.00
+
+#INITIALIZE
 textcolor = "White"
 bgcolor = "Black"
 
@@ -17,8 +19,8 @@ t.penup()
 t.goto(-295,280)
 t.pencolor(textcolor)
 
+#TURTLE TEXT FUNCTIONS
 buffer = []
-
 
 def chara():
    t.write('a')
@@ -132,7 +134,7 @@ def charv():
 
 def charw():
    t.write('w')
-   t.forward(8.5)
+   t.forward(9)
    buffer.append('w')
 
 def charx():
@@ -500,7 +502,7 @@ def charTAB():
     t.forward(16)
     buffer.append('    ')
 
-def charENTER():
+def NEWLINE():
     Ycoordinate = t.ycor()
     t.goto(-295, Ycoordinate - 12)
     if (Ycoordinate < -280):
@@ -516,9 +518,8 @@ def charBACKSPACE():
       sixes = ['a', 'b', 'c', 'd', 'e', 'g', 'h', 'n', 'o', 'p', 'q', 's', 'y', 'z', 'E', 'F', 'L', 'P', 'T', '2', '3', '4', '5', '6', '7', '8', '9', '0', '<', '>', '#', '=']
       sevens = ['x', 'B', 'C', 'D', 'H', 'K', 'N', 'R', 'S', 'U', 'Z', '?', '&', '_']
       eights = ['A', 'G', 'M', 'O', 'Q', 'X', 'Y']
-      nines = ['m', 'V']
+      nines = ['m', 'V', 'w']
       fivehalves = ['v', 'u', '$', '~', '+']
-      eighthalf = 'w'
       ten = '%'
       elevens = ['W', '@']
       sixteen = '    '
@@ -543,8 +544,6 @@ def charBACKSPACE():
          backvalue = 9
       elif delchar in fivehalves:
          backvalue = 5.5
-      elif delchar == eighthalf:
-         backvalue = 8.5
       elif delchar == ten:
          backvalue = 10
       elif delchar in elevens:
@@ -556,9 +555,8 @@ def charBACKSPACE():
       t.pencolor(bgcolor)
       t.write(delchar)
       t.pencolor(textcolor)
-  
-   
 
+#GET TURTLE CURSOR LOCATION 
 def getpos():
     print(t.position())
     print(buffer)
@@ -632,7 +630,7 @@ def putstring(inputstring):
       ',' : charCOMMA,
       '?' : charQUESTION,
       '!' : charEXCLAMATION,
-      '/"' : charQUOTATION,
+      '\"' : charQUOTATION,
       '<' : charLTS,
       '>' : charGTS,
       '/' : charFORWARDSLASH,
@@ -720,7 +718,6 @@ def putchar():
     wn.onkey(charY, "Y")
     wn.onkey(charZ, "Z")
     wn.onkey(charSPACE, "space")
-    wn.onkey(charENTER, "Return")
     wn.onkey(charBACKSPACE, "BackSpace")
     wn.onkey(charPERIOD, ".")
     wn.onkey(char1, "1")
@@ -765,10 +762,48 @@ def putchar():
     wn.onkey(charPLUS, "+")
     wn.onkey(charEQUAL, "=")
     wn.onkey(charTAB, "Tab")
+    wn.onkey(ENTER, "Return")
 
+#TURTLE OS FUNCTIONS
+def TurtleIntro():
+   t.pencolor("Yellow")
+   putstring("Welcome to Turtle OS, enter \"menu\" to see all commands implemented")
+   t.pencolor(textcolor)
+   NEWLINE()
+   putstring("\\$ ")
+   buffer.clear()
+
+def ENTER():
+   command = ReadBuffer()
+   ProcessCommand(command)
+   NEWLINE()
+   putstring("\\$ ")
+   buffer.clear()
+
+def ReadBuffer():
+   bufferstring = ""
+   for items in buffer:
+      bufferstring = bufferstring + items
+   print(bufferstring)
+   return bufferstring
+
+def ProcessCommand(c):
+   NEWLINE()
+   if c == "menu":
+      menu()
+   else:
+      t.pencolor("Red")
+      putstring("Invalid Command: " + "\"" + c + "\"")
+      t.pencolor(textcolor)
+
+def menu():
+   putstring("No commands have been implemented yet.")
+   
+   
+
+   
+TurtleIntro()
 putchar()
-pizza = ''
-putstring(pizza)
 
 wn.listen()
 turtle.mainloop()
