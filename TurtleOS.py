@@ -818,6 +818,8 @@ def ProcessCommand(c):
       rmdir(commandstring)
    elif initialCommand == "exit":
       turtleEXIT()
+   elif initialCommand == "cat":
+      cat(commandstring)
    else:
       colormessage("Invalid Command: " + "\"" + c + "\"", "Red")
 
@@ -839,6 +841,8 @@ def menu():
    putstring("rmdir")
    NEWLINE()
    putstring("exit")
+   NEWLINE()
+   putstring("cat")
 
 def ls():
    path = os.getcwd()
@@ -903,6 +907,26 @@ def turtleEXIT():
       turtle.bye()
    except Exception:
       pass
+   
+def cat(c):
+   catREAD(c)
+
+def catREAD(c):
+   for items in c:
+      try:
+         myfile = open(items)
+         txt = myfile.read()
+         for parts in txt:
+            for chars in parts:
+               if '\n' in chars:
+                  NEWLINE()
+               else:
+                  putstring(chars)
+         myfile.close()
+         NEWLINE()
+      except OSError as error:
+         colormessage("ERROR: Invalid path", "Red")
+   
    
 TurtleIntro()
 putchar()
