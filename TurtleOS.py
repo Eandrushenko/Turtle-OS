@@ -812,6 +812,12 @@ def ProcessCommand(c):
       mkdir(commandstring)
    elif initialCommand == "cd":
       cd(commandstring)
+   elif initialCommand == "rm":
+      rm(commandstring)
+   elif initialCommand == "rmdir":
+      rmdir(commandstring)
+   elif initialCommand == "exit":
+      turtleEXIT()
    else:
       colormessage("Invalid Command: " + "\"" + c + "\"", "Red")
 
@@ -827,6 +833,12 @@ def menu():
    putstring("mkdir")
    NEWLINE()
    putstring("cd")
+   NEWLINE()
+   putstring("rm")
+   NEWLINE()
+   putstring("rmdir")
+   NEWLINE()
+   putstring("exit")
 
 def ls():
    path = os.getcwd()
@@ -869,6 +881,28 @@ def cd(c):
          colormessage("ERROR: Invalid path", "Red")
    else:
          colormessage("ERROR: Missing arguments after \"cd\"", "Red")
+
+def rm(c):
+      if c:
+         path = c[0]
+         if os.path.exists(path):
+            os.remove(path)
+         else:
+            colormessage("ERROR: Invalid path", "Red")
+
+def rmdir(c):
+      if c:
+         path = c[0]
+         if os.path.exists(path):
+            os.rmdir(path)
+         else:
+            colormessage("ERROR: Invalid path", "Red")
+
+def turtleEXIT():
+   try:
+      turtle.bye()
+   except Exception:
+      pass
    
 TurtleIntro()
 putchar()
