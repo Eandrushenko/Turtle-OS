@@ -1,5 +1,6 @@
 import turtle
 import os
+import shutil
 
 #-284.00
 
@@ -820,8 +821,10 @@ def ProcessCommand(c):
       turtleEXIT()
    elif initialCommand == "cat":
       cat(commandstring)
+   elif initialCommand == "cp":
+      cp(commandstring)
    else:
-      colormessage("Invalid Command: " + "\"" + c + "\"", "Red")
+      colormessage("Invalid Command: " + "\"" + c + "\" enter \"menu\" to see all valid commands", "Red")
 
 def menu():
    putstring("ls")
@@ -843,13 +846,19 @@ def menu():
    putstring("exit")
    NEWLINE()
    putstring("cat")
+   NEWLINE()
+   putstring("cp")
 
 def ls():
    path = os.getcwd()
    dir_list = os.listdir(path)  
    for items in dir_list:
-      putstring(items)
-      NEWLINE()
+      if os.path.isdir(items):
+         colormessage(items, "#17ff00")
+         NEWLINE()
+      else:
+         putstring(items)
+         NEWLINE()
       
 def clear():
    t.clear()
@@ -926,6 +935,21 @@ def catREAD(c):
          NEWLINE()
       except OSError as error:
          colormessage("ERROR: Invalid path", "Red")
+
+def cp(c):
+   if c:
+      dest = c.pop()
+      if c:
+         source = c.pop()
+         try:
+            shutil.copyfile(source, dest)
+         except OSError as error:
+            colormessage("ERROR: \"" + source + "\" Does not exist", "Red")
+      else:
+         colormessage("ERROR: cp requires two arguments only one was provided", "Red")
+         
+   else:
+      colormessage("ERROR: Missing arguments after \"cp\"", "Red")
    
    
 TurtleIntro()
