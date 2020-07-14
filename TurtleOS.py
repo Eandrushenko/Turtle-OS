@@ -823,6 +823,8 @@ def ProcessCommand(c):
       cat(commandstring)
    elif initialCommand == "cp":
       cp(commandstring)
+   elif initialCommand == "mv":
+      mv(commandstring)
    else:
       colormessage("Invalid Command: " + "\"" + c + "\" enter \"menu\" to see all valid commands", "Red")
 
@@ -848,6 +850,8 @@ def menu():
    putstring("cat")
    NEWLINE()
    putstring("cp")
+   NEWLINE()
+   putstring("mv")
 
 def ls():
    path = os.getcwd()
@@ -898,6 +902,7 @@ def cd(c):
 def rm(c):
       if c:
          path = c[0]
+         print(path)
          if os.path.exists(path):
             os.remove(path)
          else:
@@ -946,10 +951,19 @@ def cp(c):
          except OSError as error:
             colormessage("ERROR: \"" + source + "\" Does not exist", "Red")
       else:
-         colormessage("ERROR: cp requires two arguments only one was provided", "Red")
+         colormessage("ERROR: requires two arguments only one was provided", "Red")
          
    else:
-      colormessage("ERROR: Missing arguments after \"cp\"", "Red")
+      colormessage("ERROR: Missing arguments", "Red")
+
+def mv(c):
+   if c:
+      rmfile = []
+      rmfile.append(c[0])
+      cp(c)
+      rm(rmfile)
+   else:
+      colormessage("ERROR: Missing arguments", "Red")
    
    
 TurtleIntro()
