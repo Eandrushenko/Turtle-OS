@@ -825,6 +825,8 @@ def ProcessCommand(c):
       cp(commandstring)
    elif initialCommand == "mv":
       mv(commandstring)
+   elif initialCommand == "echo":
+      echo(commandstring)
    else:
       colormessage("Invalid Command: " + "\"" + c + "\" enter \"menu\" to see all valid commands", "Red")
 
@@ -852,6 +854,8 @@ def menu():
    putstring("cp")
    NEWLINE()
    putstring("mv")
+   NEWLINE()
+   putstring("echo")
 
 def ls():
    path = os.getcwd()
@@ -964,8 +968,42 @@ def mv(c):
       rm(rmfile)
    else:
       colormessage("ERROR: Missing arguments", "Red")
-   
-   
+
+def echo(c):
+   if c:
+      if c[0] == '>':
+         c.pop(0)
+         echoWRITE(c)
+      else:
+         echoSTDOUT(c)
+
+def echoSTDOUT(c):
+   mystring = ""
+   while c:
+      if len(c) == 1:
+         mystring = mystring + c.pop(0)
+      else:
+         mystring = mystring + c.pop(0) + " "
+   putstring(mystring)
+
+def echoWRITE(c):
+   if c:
+      dest = c.pop(0)
+      mystring = ""
+      print(dest)
+      f = open(dest, "w")
+      while c:
+         if len(c) == 1:
+            mystring = mystring + c.pop(0)
+         else:
+            mystring = mystring + c.pop(0) + " "
+      print(mystring)
+      f.write(mystring)
+      f.close()
+   else:
+      colormessage("ERROR: Missing arguments after \">\"", "Red")
+
+         
 TurtleIntro()
 putchar()
 
